@@ -19,6 +19,9 @@ None
 
 ```yaml
 uses: jpetrucciani/mypy-check@master
+
+# or specify a path!
+uses: jpetrucciani/mypy-check@master
 with:
   path: '.'
 ```

@@ -1,0 +1,19 @@
+# action.yml
+name: 'Mypy Check'
+description: 'GitHub action to run mypy on your repository'
+branding:
+  icon: 'check-square'
+  color: 'blue'
+inputs:
+  path:
+    description: 'File or directory to run mypy on'
+    required: true
+    default: '.'
+outputs:
+  output:
+    description: 'The output of mypy'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}

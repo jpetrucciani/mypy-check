@@ -7,7 +7,7 @@ Make sure you have a `mypy.ini` or `setup.cfg` file at the root of your reposito
 
 ### `path`
 
-**Required** The path to run mypy on
+**Optional** The path to run mypy on
 
 **Default** `"."`
 

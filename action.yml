@@ -7,7 +7,7 @@ branding:
 inputs:
   path:
     description: 'File or directory to run mypy on'
-    required: true
+    required: false
     default: '.'
 outputs:
   output:

@@ -2,4 +2,4 @@
 set -eax
 
 mypy --version
-mypy "$1"
+mypy $1

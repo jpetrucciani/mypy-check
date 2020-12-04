@@ -20,8 +20,9 @@ None
 ```yaml
 uses: jpetrucciani/mypy-check@master
 
-# or specify a path!
+# or specify a path and args
 uses: jpetrucciani/mypy-check@master
 with:
   path: '.'
+  args: '--ignore-missing-imports --pretty --show-error-context'
 ```

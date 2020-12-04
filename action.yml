@@ -5,11 +5,15 @@ branding:
   icon: 'check-square'
   color: 'blue'
 inputs:
+  github_token:
+    description: 'GITHUB_TOKEN'
+    required: false
+    default: '${{ github.token }}'
   path:
     description: 'File or directory to run mypy on'
     required: false
     default: '.'
-  args:
+  mypy_args:
     description: 'Command line argument for mypy'
     required: false
     default: '--show-column-numbers --hide-error-context'
@@ -19,6 +23,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.path }}
-    - ${{ inputs.args }}

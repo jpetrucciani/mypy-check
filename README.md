@@ -7,7 +7,7 @@ Make sure you have a `mypy.ini` or `setup.cfg` file at the root of your reposito
 
 ### `path`
 
-**Optional** The path to run mypy on
+**Optional** The path and args to run mypy
 
 **Default** `"."`
 
@@ -18,10 +18,10 @@ None
 ## Example usage
 
 ```yaml
-uses: jpetrucciani/mypy-check@master
+uses: mcxemic/mypy-check@v1.0.0
 
 # or specify a path and args
-uses: jpetrucciani/mypy-check@master
+uses: mcxemic/mypy-check@v1.0.0
 with:
   path: '.'
   args: '--ignore-missing-imports --pretty --show-error-context'

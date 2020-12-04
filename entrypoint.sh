@@ -1,17 +1,16 @@
-#!/bin/bash
-set -ax
+#!/bin/sh
+set -e
 
-# mypy output file
-output_file=/tmp/mypy.out
+if [ -n "${GITHUB_WORKSPACE}" ] ; then
+  cd "${GITHUB_WORKSPACE}" || exit
+fi
 
-# get mypy version
-mypy --version
+export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 # run mypy, tee output to file
-mypy $1 $2 | tee "${output_file}"
-exit_code="${PIPESTATUS[0]}"
-
-# analyze output
-python /github.py "${output_file}"
-
-exit $exit_code
+mypy --show-column-numbers ${INPUT_PATH} ${INPUT_MYPY_ARGS} \
+    | reviewdog -efm="%f:%l:%c: %t%*[^:]: %m"               \
+      -name="mypy"                                          \
+      -reporter="github-pr-check"                           \
+      -fail-on-error="true"                                 \
+      -level="error"                                        \

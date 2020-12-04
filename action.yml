@@ -9,6 +9,10 @@ inputs:
     description: 'File or directory to run mypy on'
     required: false
     default: '.'
+  args:
+    description: 'Command line argument for mypy'
+    required: false
+    default: '--show-column-numbers --hide-error-context'
 outputs:
   output:
     description: 'The output of mypy'
@@ -17,3 +21,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
+    - ${{ inputs.args }}

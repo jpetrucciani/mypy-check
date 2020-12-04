@@ -8,7 +8,7 @@ output_file=/tmp/mypy.out
 mypy --version
 
 # run mypy, tee output to file
-mypy --show-column-numbers --hide-error-context $1 | tee "${output_file}"
+mypy $1 $2 | tee "${output_file}"
 exit_code="${PIPESTATUS[0]}"
 
 # analyze output

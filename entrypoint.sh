@@ -8,10 +8,11 @@ output_file=/tmp/mypy.out
 mypy --version
 
 # run mypy, tee output to file
-mypy --show-column-numbers --hide-error-context $1 | tee "${output_file}"
+# shellcheck disable=2086
+mypy $2 --show-column-numbers --hide-error-context $1 | tee "${output_file}"
 exit_code="${PIPESTATUS[0]}"
 
 # analyze output
 python /github.py "${output_file}"
 
-exit $exit_code
+exit "$exit_code"

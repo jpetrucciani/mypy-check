@@ -1,4 +1,5 @@
 # mypy-check
+
 GitHub Action for [mypy](https://mypy.readthedocs.io/en/master/)
 
 Make sure you have a `mypy.ini` or `setup.cfg` file at the root of your repository!
@@ -10,6 +11,12 @@ Make sure you have a `mypy.ini` or `setup.cfg` file at the root of your reposito
 **Optional** The path to run mypy on
 
 **Default** `"."`
+
+### `mypy_flags`
+
+**Optional** Optional mypy flags (refer to `mypy --help`)
+
+**Default** `""`
 
 ## Outputs
 
@@ -24,4 +31,10 @@ uses: jpetrucciani/mypy-check@master
 uses: jpetrucciani/mypy-check@master
 with:
   path: '.'
+
+
+# or specify additional mypy flags!
+uses: jpetrucciani/mypy-check@master
+with:
+  mypy_flags: '--config-file .mypy.ini'
 ```

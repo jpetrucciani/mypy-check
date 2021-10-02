@@ -9,6 +9,10 @@ inputs:
     description: 'File or directory to run mypy on'
     required: false
     default: '.'
+  mypy_flags:
+    description: 'Optional mypy flags (refer to `mypy --help`)'
+    required: false
+    default: ''
 outputs:
   output:
     description: 'The output of mypy'
@@ -17,3 +21,4 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
+    - ${{ inputs.mypy_flags }}

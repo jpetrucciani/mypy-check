@@ -1,0 +1,28 @@
+name: check for mypy updates
+on: {workflow_dispatch, schedule: [cron: '0 0 * * *']}
+jobs:
+  check-for-updates:
+    runs-on: ubuntu-20.04
+    name: check for mypy updates
+    env:
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          architecture: x64
+      - name: check version
+        run: |
+          pip install -U mypy
+          pip freeze | grep 'mypy==' >requirements.txt
+      - uses: peter-evans/create-pull-request@v3.10.0
+        id: new_pull_request
+        with:
+          delete-branch: true
+          title: automatic mypy update
+          commit-message: automatic mypy update
+          branch: automatic-mypy-update
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - run: gh pr merge --auto --squash ${{ steps.new_pull_request.outputs.pull-request-url }}

@@ -25,4 +25,5 @@ jobs:
           commit-message: automatic mypy update
           branch: automatic-mypy-update
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      - run: gh pr merge --auto --squash ${{ steps.new_pull_request.outputs.pull-request-url }}
+      - if: steps.new_pull_request.outputs.pull-request-url != ''
+        run: gh pr merge --auto --squash ${{ steps.new_pull_request.outputs.pull-request-url }}

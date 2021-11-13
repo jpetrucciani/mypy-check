@@ -13,6 +13,10 @@ inputs:
     description: 'Optional mypy flags (refer to `mypy --help`)'
     required: false
     default: ''
+  requirements:
+    description: 'Optional, if not empty: parameters to pass to `pip install` before running mypy'
+    required: false
+    default: ''
 outputs:
   output:
     description: 'The output of mypy'
@@ -22,3 +26,4 @@ runs:
   args:
     - ${{ inputs.path }}
     - ${{ inputs.mypy_flags }}
+    - ${{ inputs.requirements }}

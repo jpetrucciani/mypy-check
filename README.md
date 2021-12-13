@@ -1,6 +1,6 @@
 # mypy-check
 
-GitHub Action for [mypy](https://mypy.readthedocs.io/en/master/)
+GitHub Action for [mypy](https://mypy.readthedocs.io/en/stable/)
 
 Make sure you have a `mypy.ini` or `setup.cfg` file at the root of your repository!
 

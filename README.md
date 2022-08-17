@@ -24,11 +24,17 @@ Make sure you have a `mypy.ini` or `setup.cfg` file at the root of your reposito
 
 **Default** `""`
 
+### `requirements_file`
+
+**Optional** Optional, if not empty: a file to pass to `pip install -r` before running mypy
+
+**Default** `""`
+
 ### `python_version`
 
 **Optional** Optional, Python version to use
 
-**Default** `"3.9"`
+**Default** `"3.10"`
 
 ## Outputs
 

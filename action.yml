@@ -17,10 +17,14 @@ inputs:
     description: 'Optional, if not empty: parameters to pass to `pip install` before running mypy'
     required: false
     default: ''
+  requirements_file:
+    description: 'Optional, if not empty: a file to pass to `pip install -r` before running mypy'
+    required: false
+    default: ''
   python_version:
     description: 'Optional, Python version to use'
     required: false
-    default: '3.9'
+    default: '3.10'
 outputs:
   output:
     description: 'The output of mypy'
@@ -31,5 +35,5 @@ runs:
       run: docker build ${{ github.action_path }} --build-arg "pyver=${{ inputs.python_version }}" -t mypy
       shell: bash
     - id: run
-      run: docker run --rm -v $(pwd):/github/workspace --workdir /github/workspace mypy "${{ inputs.path }}" "${{ inputs.mypy_flags }}" "${{ inputs.requirements }}"
+      run: docker run --rm -v $(pwd):/github/workspace --workdir /github/workspace mypy "${{ inputs.path }}" "${{ inputs.mypy_flags }}" "${{ inputs.requirements }}" "${{ inputs.requirements_file }}"
       shell: bash

@@ -6,6 +6,11 @@ if [ ! -z "$3" ]; then
     pip install $3
 fi
 
+# install requirements_file, if defined
+if [ ! -z "$4" ]; then
+    pip install -r $4
+fi
+
 # mypy output file
 output_file=/tmp/mypy.out
 

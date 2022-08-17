@@ -1,6 +1,11 @@
 #!/bin/bash
 set -ax
 
+# install requirements, if defined
+if [ ! -z "$3" ]; then
+    pip install $3
+fi
+
 # mypy output file
 output_file=/tmp/mypy.out
 

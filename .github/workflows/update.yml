@@ -7,22 +7,26 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: setup python
         uses: actions/setup-python@v2
         with:
           python-version: '3.10'
           architecture: x64
-      - name: check version
+      - id: version
+        name: check version
         run: |
           pip install -U mypy
           pip freeze | grep 'mypy==' >requirements.txt
+          version="$(sed -E 's#mypy==(.*)#\1#g' ./requirements.txt)"
+          echo "version=$version" >>$GITHUB_OUTPUT
+          echo "message=automatic mypy update [$version]" >>$GITHUB_OUTPUT
       - uses: peter-evans/create-pull-request@v3.10.0
         id: new_pull_request
         with:
           delete-branch: true
-          title: automatic mypy update
-          commit-message: automatic mypy update
+          title: ${{ steps.version.outputs.message }}
+          commit-message: ${{ steps.version.outputs.message }}
           branch: automatic-mypy-update
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - if: steps.new_pull_request.outputs.pull-request-url != ''

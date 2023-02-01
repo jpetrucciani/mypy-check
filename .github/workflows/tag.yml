@@ -1,0 +1,28 @@
+name: tag
+
+on:
+  push: {branches: [master]}
+
+jobs:
+  tag:
+    name: tag
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - id: var
+        run: |
+          version="$(sed -E 's#mypy==(.*)#\1#g' ./requirements.txt)"
+          create_tag="$(git ls-remote --exit-code origin "refs/tags/$version" >/dev/null && echo false || echo true)"
+          echo "version=$version" >>$GITHUB_OUTPUT
+          echo "create_tag=$create_tag" >>$GITHUB_OUTPUT
+      - name: tag
+        if: steps.var.outputs.create_tag == 'true'
+        env:
+          VERSION: ${{ steps.var.outputs.version }}
+        run: |
+          git config --global user.name 'jacobi petrucciani'
+          git config --global user.email 'jpetrucciani@users.noreply.github.com'
+          git tag -a "$VERSION" -m "$VERSION"
+          git push --tags

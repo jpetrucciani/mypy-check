@@ -1,8 +1,8 @@
 name: check for mypy updates
-on: {workflow_dispatch, schedule: [cron: '0 0 * * *']}
+on: { workflow_dispatch, schedule: [cron: '0 0 * * *'] }
 jobs:
   check-for-updates:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: check for mypy updates
     env:
       GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

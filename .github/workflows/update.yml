@@ -2,7 +2,7 @@ name: check for mypy updates
 on: {workflow_dispatch, schedule: [cron: '0 0 * * *']}
 jobs:
   check-for-updates:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     name: check for mypy updates
     env:
       GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -11,7 +11,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.13'
           architecture: x64
       - id: version
         name: check version

@@ -1,4 +1,4 @@
-ARG pyver=3.10
+ARG pyver=3.13
 FROM python:$pyver
 
 LABEL "maintainer"="Jacobi Petrucciani <j@cobi.dev>"

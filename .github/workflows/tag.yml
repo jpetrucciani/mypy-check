@@ -1,7 +1,7 @@
 name: tag
 
 on:
-  push: {branches: [master]}
+  push: { branches: [master] }
 
 jobs:
   tag:
